@@ -26,14 +26,25 @@
     @media screen and (max-width: 548px) {
         .page {
             display: grid;
-            grid-template-rows: 4fr 1fr 9fr 2fr 1fr;
+            grid-template-rows: 4fr 2fr 6fr 2fr 1fr;
+            overflow: scroll;
         }
+        .footer {
+        background-color: rgb(4, 5, 5);
+        color: aliceblue;
+        text-align: center;
+        padding: 10px;
+        position: sticky;
+        bottom: 0;
+        width: 100%;
+        font-family: 'Seymour One';
+    }
 
         .navbar ul {
             display: flex;
             flex-direction: column;
             justify-content: space-evenly;
-            align-items: center
+            align-items: center;
         }
 
         .modal-content {
