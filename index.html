@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href='https://fonts.googleapis.com/css?family=Seymour One' rel='stylesheet'>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    body {
+        background-image: url("https://media.istockphoto.com/vectors/black-colored-spotted-cracked-effect-wall-texture-grunge-vector-vector-id1072541352?k=6&m=1072541352&s=170667a&w=0&h=OPgZKaRNBMVOsCq4D8FlumdnqBT7U9wS8zjXsL8LbDk=");
+    }
+
+    .page {
+        display: grid;
+        grid-template-rows: 1fr 1fr 4fr 2fr 1fr;
+    }
+
+    @media screen and (max-width: 548px) {
+        .page {
+            display: grid;
+            grid-template-rows: 4fr 1fr 9fr 2fr 1fr;
+        }
+
+        .navbar ul {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-evenly;
+            align-items: center
+        }
+
+        .modal-content {
+            background-color: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 8px solid #1ef4e9;
+            box-shadow: 0px 8px 2px rgba(33, 185, 168, 0.8);
+            width: 50%;
+            /* Adjust the width as needed */
+            height: 20%;
+            /* Adjust the height as needed */
+            font-family: 'Seymour One';
+            font-size: 20px;
+            margin: auto;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            /* Center vertically */
+            left: 0;
+            right: 0;
+            /* Center horizontally */
+
+        }
+
+
+    }
+
+    .welcome {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .board {
+        display: flex;
+        flex-wrap: wrap;
+        row-gap: 0px;
+        column-gap: 0px;
+        height: 204px;
+        width: 204px;
+        border: 6px solid rgb(11, 10, 13);
+        box-shadow: 0px 8px 8px rgba(255, 255, 255, 0.3);
+
+    }
+
+    .box {
+        width: 60px;
+        height: 60px;
+        background: white;
+        border: 4px solid black;
+        cursor: pointer;
+        transition: all 0.8s ease;
+    }
+
+    .btn {
+        width: 180px;
+        height: 60px;
+        border: 5px solid rgb(2, 201, 227);
+        background-color: rgb(8, 8, 8);
+        color: rgb(255, 255, 255);
+        cursor: pointer;
+        transition: background-color 0.8s ease;
+        font-family: 'Seymour One';
+        font-size: 22px;
+        box-shadow: 0px 8px 8px rgba(255, 255, 255, 0.3);
+        transition: all 0.6s ease;
+    }
+
+    .btn:active {
+        background-color: rgb(81, 81, 87);
+        color: rgb(13, 245, 238);
+        font-size: 28px;
+    }
+
+    .btnbar {
+        display: flex;
+        justify-content: center;
+        margin: 3% 3%;
+
+    }
+
+
+    #turnMessage {
+        text-align: center;
+        font-family: 'Seymour One';
+        font-size: 20px;
+        color: rgb(5, 227, 243);
+        background-color: rgb(10, 10, 11);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-bottom: 3px solid rgb(255, 255, 255);
+        border-top: 2px solid rgb(255, 255, 255);
+        box-shadow: 0px 5px 2px rgba(255, 255, 255, 0.2);
+        transition: background-color 0.7s ease;
+    }
+
+    .navbar {
+        display: flex;
+        background-color: rgb(5, 5, 5);
+        justify-content: center;
+        align-items: center;
+        border-bottom: 2px solid rgb(255, 255, 255);
+
+    }
+
+    .navbar li {
+        display: inline-block;
+
+
+
+    }
+
+    .navbar li a {
+        text-decoration: none;
+        color: aliceblue;
+        font-family: 'Seymour One';
+        padding: 3px 8px;
+    }
+
+    .navbar li a:hover {
+        color: rgb(26, 237, 248);
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+
+    }
+
+    .footer {
+        background-color: rgb(4, 5, 5);
+        color: aliceblue;
+        text-align: center;
+        padding: 10px;
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        font-family: 'Seymour One';
+    }
+
+
+
+
+
+    /* Style for the modal */
+    .modal {
+        display: grid;
+        position: fixed;
+        z-index: 10;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(37, 33, 33, 0.7);
+    }
+
+    .modal-content {
+        background-color: #ededed;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 8px solid #1ef4e9;
+        box-shadow: 0px 8px 2px rgba(33, 185, 168, 0.8);
+        width: 50%;
+        /* Adjust the width as needed */
+        height: 50%;
+        /* Adjust the height as needed */
+        font-family: 'Seymour One';
+        font-size: 30px;
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        /* Center vertically */
+        left: 0;
+        right: 0;
+        /* Center horizontally */
+
+    }
+
+
+    .close {
+        color: #aaa;
+        float: right;
+        font-size: 40px;
+        font-weight: bold;
+    }
+
+    .close:hover,
+    .close:focus {
+        color: black;
+        text-decoration: none;
+        cursor: pointer;
+
+    }
+    h1{
+        font-family: 'Seymour One';
+        display: flex;
+        /* border: 2px solid rgb(241, 230, 230); */
+        font-size: 4vh;
+        align-items: center;
+        justify-content: center;
+        text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
+    }
+    h1 #tic{
+        color:red;
+        background-color: aqua;
+        border: 2px solid black;
+
+    }
+    h1 #tac
+    { 
+        color:aqua;
+        background-color:blue;
+        border: 4px solid black;
+
+
+    }
+    h1 #toe
+    { color:blue;
+      background-color: red;
+      border: 4px solid black;
+
+
+    }
+</style>
+
+<body>
+    <div class="page">
+
+        <nav class="navbar">
+            <ul>
+                <li><a href="#">home</a></li>
+                <li><a href="#">games</a></li>
+                <li><a href="#">services</a></li>
+                <li><a href="#">contact us</a></li>
+            </ul>
+        </nav>
+        <h1><span id="tic"> Tic</span > <span id="tac">Tac</span > <span id="toe">Toe</span></h1>
+
+
+        <div class="welcome">
+            <div class="board">
+                <div class="box" id="box1" onclick="change('box1')"></div>
+                <div class="box" id="box2" onclick="change('box2')"></div>
+                <div class="box" id="box3" onclick="change('box3')"></div>
+                <div class="box" id="box4" onclick="change('box4')"></div>
+                <div class="box" id="box5" onclick="change('box5')"></div>
+                <div class="box" id="box6" onclick="change('box6')"></div>
+                <div class="box" id="box7" onclick="change('box7')"></div>
+                <div class="box" id="box8" onclick="change('box8')"></div>
+                <div class="box" id="box9" onclick="change('box9')"></div>
+            </div>
+        </div>
+        <div class="btnbar">
+            <button id="reset" type="button" class="btn" onclick="reset()">RESET</button>
+        </div>
+        <div id="turnMessage">Player 1's Turn</div>
+
+
+
+        <div class="footer">
+            &copy; 2024 TicTacToe. Created by Vinay Hivrale.
+        </div>
+    </div>
+
+    <div class="mess">
+        <div id="customModal" class="modal">
+            <div class="modal-content">
+                <p id="modalMessage"></p>
+                <span class="close" onclick="closeModal()">&times;</span>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let gameon = true;
+        let player = 1;
+        let movenum = 1;
+
+        let updateTurnMessage = function () {
+            let turnMessage = document.getElementById("turnMessage");
+            turnMessage.textContent = `Player ${player}'s Turn`;
+        }
+
+        let playSound = function (soundFile) {
+            const audio = new Audio(soundFile);
+            audio.play();
+        }
+
+        let reset = function () {
+            document.getElementById("turnMessage").style.backgroundColor = "black";
+
+            playSound("audio/movement-swipe-whoosh-2-186576.mp3");
+            gameon = true;
+            player = 1;
+            movenum = 1;
+            for (let i = 1; i < 10; i++) {
+                document.getElementById('box' + i).style.background = "white";
+            }
+            updateTurnMessage();
+        }
+        reset();
+        closeModal();
+        // Open the custom modal with a message
+        function openModal(message) {
+            document.getElementById('modalMessage').innerText = message;
+            document.getElementById('customModal').style.display = 'block';
+        }
+
+        // Close the custom modal
+        function closeModal() {
+            document.getElementById('customModal').style.display = 'none';
+        }
+
+
+        let change = function (id) {
+            if (gameon && document.getElementById(id).style.backgroundColor === "white") {
+                if (player == 1) {
+                    playSound("audio/cartoon-jump-6462.mp3");
+                    document.getElementById(id).style.background = "red";
+                } else if (player == 2) {
+                    playSound("audio/happy-pop-1-185286.mp3");
+                    document.getElementById(id).style.background = "blue";
+                }
+                player = 3 - player;
+                movenum++;
+                if (player == 1) {
+                    document.getElementById("turnMessage").style.color = "red";
+
+
+                }
+                else {
+                    document.getElementById("turnMessage").style.color = "blue";
+
+
+                }
+                updateTurnMessage();
+                setTimeout(function () {
+                    checkWinner();
+                }, 700);
+            }
+        }
+
+        let checkWinner = function () {
+            let winningCombinations = [
+                [1, 2, 3], [4, 5, 6], [7, 8, 9],
+                [1, 4, 7], [2, 5, 8], [3, 6, 9],
+                [1, 5, 9], [3, 5, 7]
+            ];
+
+            for (let combination of winningCombinations) {
+                let [a, b, c] = combination;
+                let boxA = document.getElementById('box' + a).style.background;
+                let boxB = document.getElementById('box' + b).style.background;
+                let boxC = document.getElementById('box' + c).style.background;
+
+                if (boxA !== "white" && boxA === boxB && boxB === boxC) {
+                    playSound("audio/game-level-complete-143022.mp3");
+                    openModal(`Player ${boxA === "red" ? 1 : 2} wins!`);
+
+                    gameon = false;
+                    return;
+                }
+            }
+
+            if (movenum === 10) {
+                playSound("audio/game-level-complete-143022.mp3");
+                openModal("Its DRAW!")
+                gameon = false;
+            }
+        }
+    </script>
+
+</body>
+
+</html>
