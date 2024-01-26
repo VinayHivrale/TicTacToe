@@ -27,16 +27,17 @@
         .page {
             display: grid;
             grid-template-rows: 2fr 1.5fr 5fr 2fr 1fr;
-            
+
         }
+
         .footer {
-        background-color: rgb(4, 5, 5);
-        color: aliceblue;
-        text-align: center;
-        padding: 10px;
-        width: 100%;
-        font-family: 'Seymour One';
-    }
+            background-color: rgb(4, 5, 5);
+            color: aliceblue;
+            text-align: center;
+            padding: 10px;
+            width: 100%;
+            font-family: 'Seymour One';
+        }
 
         .navbar ul {
             display: flex;
@@ -68,6 +69,9 @@
             /* Center horizontally */
 
         }
+
+        
+
 
 
     }
@@ -139,7 +143,7 @@
         border-bottom: 3px solid rgb(255, 255, 255);
         border-top: 2px solid rgb(255, 255, 255);
         box-shadow: 0px 5px 2px rgba(255, 255, 255, 0.2);
-        transition: background-color 0.7s ease;
+        transition: background-color 1s ease;
     }
 
     .navbar {
@@ -163,9 +167,10 @@
         color: aliceblue;
         font-family: 'Seymour One';
         padding: 3px 8px;
+        transition: all 0.5s ease;
     }
 
-    .navbar li a:hover {
+    .navbar li a:active {
         color: rgb(26, 237, 248);
         text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
 
@@ -201,7 +206,10 @@
 
     .modal-content {
         background-color: #ededed;
-        display: flex;
+        display: grid;
+        grid-template-rows: 1fr 4fr;
+
+        /* display: flex; */
         align-items: center;
         justify-content: center;
         border: 8px solid #1ef4e9;
@@ -226,19 +234,31 @@
 
     .close {
         color: #aaa;
-        float: right;
         font-size: 40px;
         font-weight: bold;
+        font-family: 'Seymour One';
+        
+        border: 3px solid rgb(42, 212, 243);
+        border-radius: 3px;
+        padding: 0px 15px;
+        background-color: black;
+        cursor: pointer;
+        transition: all 0.6s ease;
+
+
     }
 
-    .close:hover,
-    .close:focus {
+    .close:hover
+     {
         color: black;
         text-decoration: none;
         cursor: pointer;
+        background-color: #ededed;
+
 
     }
-    h1{
+
+    h1 {
         font-family: 'Seymour One';
         display: flex;
         /* border: 2px solid rgb(241, 230, 230); */
@@ -247,25 +267,117 @@
         justify-content: center;
         text-shadow: 1px 1px 2px black, 0 0 25px blue, 0 0 5px darkblue;
     }
-    h1 #tic{
-        color:red;
+
+    h1 #tic {
+        color: red;
         background-color: aqua;
         border: 2px solid black;
 
     }
-    h1 #tac
-    { 
-        color:aqua;
-        background-color:blue;
+
+    h1 #tac {
+        color: aqua;
+        background-color: blue;
         border: 4px solid black;
 
 
     }
-    h1 #toe
-    { color:blue;
-      background-color: red;
-      border: 4px solid black;
 
+    h1 #toe {
+        color: blue;
+        background-color: red;
+        border: 4px solid black;
+
+
+    }
+
+    .uppersection {
+        display: flex;
+        flex-direction: row-reverse;
+
+
+    }
+
+    #customModal .lowersection {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+
+    }
+
+    #customModal .lowersection p {
+        margin-bottom: 35%;
+
+    }
+
+
+    /* Add this style to your existing CSS */
+    #settingsModal {
+        background-color: rgba(37, 33, 33, 0.7);
+    }
+
+    #settingsModal .modal-content {
+        background-color: #ededed;
+        width: 50%;
+        height: auto;
+        padding: 20px;
+    }
+
+
+
+
+    #settingsForm input {
+        height: 70%;
+        border: 3px solid black;
+        background-color: #e7f0ea;
+        font-family: 'Seymour One';
+        font-size: 50%;
+       
+
+
+    }
+
+    #settingsForm label {
+        height: 50%;
+        font-size: 2rem;
+        background-color: rgb(244, 244, 242);
+        align-self: center;
+    }
+
+    /* Add this style to your existing CSS */
+    #settingsForm .modal-content .close {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        font-size: 20px;
+        cursor: pointer;
+        background: none;
+        border: none;
+        outline: none;
+        color: #aaa;
+    }
+
+    .modal-content1 {
+        background-color: #ededed;
+        display: flex;
+        border: 8px solid #1ef4e9;
+        flex-direction: column;
+        box-shadow: 0px 8px 2px rgba(33, 185, 168, 0.8);
+        width: 50%;
+        height: 50%;
+        /* Adjust the width as needed */
+
+        /* Adjust the height as needed */
+        font-family: 'Seymour One';
+
+        margin: auto;
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        /* Center vertically */
+        left: 0;
+        right: 0;
 
     }
 </style>
@@ -277,11 +389,14 @@
             <ul>
                 <li><a href="#">home</a></li>
                 <li><a href="#">games</a></li>
-                <li><a href="#">services</a></li>
-                <li><a href="#">contact us</a></li>
+                <!-- Add this button in the navbar or wherever you want -->
+                <button id="settingsBtn" onclick="openSettingsModal()">
+                    <i class="fa fa-cogs"></i> Settings
+                </button>
+
             </ul>
         </nav>
-        <h1><span id="tic"> Tic</span > <span id="tac">Tac</span > <span id="toe">Toe</span></h1>
+        <h1><span id="tic"> Tic</span> <span id="tac">Tac</span> <span id="toe">Toe</span></h1>
 
 
         <div class="welcome">
@@ -312,21 +427,56 @@
     <div class="mess">
         <div id="customModal" class="modal">
             <div class="modal-content">
-                <p id="modalMessage"></p>
-                <span class="close" onclick="closeModal()">&times;</span>
+                <div class="uppersection">
+                    <button type="button" class="close" onclick="closeModal()">&times;</button>
 
+
+                </div>
+                <div class="lowersection">
+                    <p id="modalMessage"></p>
+
+                </div>
             </div>
+
         </div>
+        <div>
+            <form id="settingsForm" class="modal-content1">
+                <button type="button" class="close" onclick="closeSettingsModal()">&times;</button>
+
+                <label for="player1" style="font-size: 100%;">Player 1 Name:</label>
+                <input type="text" id="player1" placeholder="player1" required>
+
+                <label for="player2" style="font-size: 100%;">Player 2 Name:</label>
+                <input type="text" id="player2" placeholder="player2" required>
+
+                <button type="button" class="close  onclick="saveSettings()">Save</button>
+            </form>
+        </div>
+        <!-- Add this close button inside the modal content -->
+
+
+        <!-- Form for player names -->
+
+
+
+
     </div>
 
     <script>
         let gameon = true;
         let player = 1;
         let movenum = 1;
+        let player1 = "player1";
+        let player2 = "player2";
 
         let updateTurnMessage = function () {
             let turnMessage = document.getElementById("turnMessage");
-            turnMessage.textContent = `Player ${player}'s Turn`;
+            if (player == 1) {
+                turnMessage.textContent = `${player1}'s Turn`;
+            }
+            else {
+                turnMessage.textContent = `${player2}'s Turn`;
+            }
         }
 
         let playSound = function (soundFile) {
@@ -336,6 +486,7 @@
 
         let reset = function () {
             document.getElementById("turnMessage").style.backgroundColor = "black";
+            document.getElementById("turnMessage").style.color = "white";
 
             playSound("audio/movement-swipe-whoosh-2-186576.mp3");
             gameon = true;
@@ -346,7 +497,19 @@
             }
             updateTurnMessage();
         }
-        reset();
+        let resetonly = function () {
+            document.getElementById("turnMessage").style.backgroundColor = "black";
+            document.getElementById("turnMessage").style.color = "white";
+
+            gameon = true;
+            player = 1;
+            movenum = 1;
+            for (let i = 1; i < 10; i++) {
+                document.getElementById('box' + i).style.background = "white";
+            }
+            updateTurnMessage();
+        }
+        resetonly();
         closeModal();
         // Open the custom modal with a message
         function openModal(message) {
@@ -404,7 +567,13 @@
                 if (boxA !== "white" && boxA === boxB && boxB === boxC) {
                     playSound("audio/game-level-complete-143022.mp3");
                     openModal(`Player ${boxA === "red" ? 1 : 2} wins!`);
+                    if (boxA === "red") {
+                        openModal(` Victory For ${player1}! `);
+                    }
+                    else {
+                        openModal(` Victory For ${player2}! `);
 
+                    }
                     gameon = false;
                     return;
                 }
@@ -416,6 +585,31 @@
                 gameon = false;
             }
         }
+
+
+        // Add these functions to your existing script
+        function openSettingsModal() {
+            document.getElementById('settingsForm').style.display = 'grid';
+        }
+
+        function saveSettings() {
+            player1 = document.getElementById('player1').value;
+            player2 = document.getElementById('player2').value;
+            resetonly();
+            // Update player names in turn message
+            document.getElementById('turnMessage').textContent = `${player1}'s Turn`;
+
+            document.getElementById("turnMessage").style.color = "red";
+
+
+        }
+
+        // Add this function to your existing script
+        function closeSettingsModal() {
+            document.getElementById('settingsForm').style.display = 'none';
+        }
+
+
     </script>
 
 </body>
