@@ -70,7 +70,7 @@
 
         }
 
-        
+
 
 
 
@@ -237,23 +237,23 @@
         font-size: 40px;
         font-weight: bold;
         font-family: 'Seymour One';
-        
+
         border: 3px solid rgb(42, 212, 243);
         border-radius: 3px;
         padding: 0px 15px;
         background-color: black;
         cursor: pointer;
-        transition: all 0.6s ease;
+        transition: all 1s ease;
 
 
     }
 
-    .close:hover
-     {
+    .close:active{
         color: black;
         text-decoration: none;
         cursor: pointer;
         background-color: #ededed;
+      
 
 
     }
@@ -327,22 +327,15 @@
 
 
 
-    #settingsForm input {
-        height: 70%;
-        border: 3px solid black;
-        background-color: #e7f0ea;
-        font-family: 'Seymour One';
-        font-size: 50%;
-        font-size: larger;
-
-
-    }
+   
 
     #settingsForm label {
         height: 50%;
-        font-size: 2rem;
+        font-size: 4rem;
         background-color: rgb(244, 244, 242);
         align-self: center;
+        background-image: url("images/boy.jpg");
+
     }
 
     /* Add this style to your existing CSS */
@@ -361,9 +354,8 @@
     .modal-content1 {
         background-color: #ededed;
         display: flex;
-        border: 8px solid #1ef4e9;
+        border: 8px outset #1ef4f4;
         flex-direction: column;
-        box-shadow: 0px 8px 2px rgba(33, 185, 168, 0.8);
         width: 50%;
         height: 50%;
         /* Adjust the width as needed */
@@ -379,6 +371,31 @@
         left: 0;
         right: 0;
 
+    }
+    form div{
+        display:flex;
+        justify-content: center;
+        align-items: center;
+        height:40%;
+        background-color: #ffffff;
+        background-image: url("images/boy.jpg");
+        border: 4px solid rgb(25, 26, 26);
+        border-left: 4px solid black;
+        border-right: 4px solid black;
+        
+    }
+    #settingsForm input {
+        height: 40%;
+        border: 4px solid black;
+        background-color: #d5e2e2;
+        font-family: 'Seymour One';
+        font-size: larger;
+
+
+    }
+    #settingsBtn{
+        background-color: #27def6;
+        font-family:'Seymour One' ;
     }
 </style>
 
@@ -442,14 +459,15 @@
         <div>
             <form id="settingsForm" class="modal-content1">
                 <button type="button" class="close" onclick="closeSettingsModal()">&times;</button>
-
-                <label for="player1" style="font-size: 100%;">Player 1 Name:</label>
+                <div>
+                    <label for="player1" style="font-size: 100%;">Player-1 Name</label>
+                </div>
                 <input type="text" id="player1" required>
-
-                <label for="player2" style="font-size: 100%;">Player 2 Name:</label>
+                <div>
+                    <label for="player2" style="font-size: 100%;">Player-2 Name</label>
+                </div>
                 <input type="text" id="player2" required>
-
-                <button type="button" class="close"  onclick="saveSettings()">Save</button>
+                <button type="button" class="close" onclick="saveSettings()">Save</button>
             </form>
         </div>
         <!-- Add this close button inside the modal content -->
@@ -589,7 +607,7 @@
 
         // Add these functions to your existing script
         function openSettingsModal() {
-            document.getElementById('settingsForm').style.display = 'grid';
+            document.getElementById('settingsForm').style.display = 'flex';
         }
 
         function saveSettings() {
